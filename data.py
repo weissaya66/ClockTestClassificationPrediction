@@ -19,11 +19,7 @@ def loadTestData(batch_size):
 
     test_data = datasets.ImageFolder(config.test_dir, transform=test_transforms)
 
-    test_idx = [i for i in range(len(test_data))]
-
-    test_sampler = SubsetRandomSampler(test_idx)
-
     test_loader = torch.utils.data.DataLoader(test_data, batch_size=batch_size,
-                                              sampler=test_sampler, drop_last=False, num_workers=num_workers)
+                                              shuffle=False, drop_last=False, num_workers=num_workers)
 
     return test_loader
